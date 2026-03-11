@@ -90,10 +90,7 @@ The system is built using the following technologies:
 The project is organized into different folders to keep the system **modular and easy to maintain**.
 
 - **public/**  
-  Contains static files such as CSS, JavaScript, and images.
-
-- **views/**  
-  Contains HTML pages like login, registration, and menu pages.
+  Contains static files such as CSS, JavaScript, images ,HTML pages like login, registration, and menu pages.
 
 - **database/**  
   Contains the SQLite database file.
@@ -153,10 +150,4 @@ The system provides several important features:
 - Data storage using SQLite database  
 
 ---
-
-• User registration and login
-• Restaurant browsing
-• Viewing menu items
-• Placing food orders
-• Data storage using SQLite database
 
