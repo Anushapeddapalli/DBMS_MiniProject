@@ -110,7 +110,7 @@ Follow these steps to run the project locally.
 ### 1️⃣ Clone the repository
 
 
-git clone https://github.com/Anushapeddapalli/food-ordering-system.git
+git clone https://github.com/Anushapeddapalli/DBMS_MiniProject.git
 
 
 ### 2️⃣ Navigate to the project folder
