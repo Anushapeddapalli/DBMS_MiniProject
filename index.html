@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Food Ordering System</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+
+      /* 🔥 Same food background */
+      background: url("https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1920") no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    /* Dark overlay for readability */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.45);
+      z-index: -1;
+    }
+
+    header {
+      padding: 15px 30px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #fff;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .logo img {
+      height: 40px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 30px;
+    }
+
+    /* ✨ Glass card for content */
+    .container {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #fff;
+    }
+
+    #topbar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    #topbar input,
+    #topbar button {
+      padding: 10px 12px;
+      border-radius: 6px;
+      border: none;
+      font-size: 15px;
+    }
+
+    #topbar input {
+      flex: 1;
+      outline: none;
+    }
+
+    #topbar button {
+      background: #ff2d7a;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    #topbar button:hover {
+      background: #e0266b;
+    }
+
+    h3 {
+      margin-top: 10px;
+      margin-bottom: 15px;
+    }
+
+    #restaurantList {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    #restaurantList li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      background: rgba(0, 0, 0, 0.35);
+    }
+
+    #restaurantList li span {
+      font-size: 16px;
+    }
+
+    #restaurantList li button {
+      padding: 8px 12px;
+      border: none;
+      border-radius: 6px;
+      background: #ff2d7a;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    #restaurantList li button:hover {
+      background: #e0266b;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <img src="logo.png" alt="Logo">
+    <span>🍴 Tasty Bites</span>
+  </div>
+</header>
+
+<div class="container">
+  <div id="topbar">
+    <input type="text" id="foodInput" placeholder="Search food (e.g. biryani, noodles)" oninput="searchFood()" />
+    <input type="text" id="locationInput" placeholder="Enter location (e.g. Bhimavaram)" oninput="searchFood()" />
+    <button onclick="logout()">Logout</button>
+  </div>
+
+  <h3>🔥 Popular Picks</h3>
+  <ul id="restaurantList"></ul>
+</div>
+
+<script src="script.js"></script>
+
+<script>
+  // Default items with their restaurant IDs (must match your DB)
+  const defaultItems = [
+    { food: "Chicken Biryani", restaurant: "Spice Hub", rid: 1 },
+    { food: "Mutton Biryani", restaurant: "Vizag Biryani House", rid: 4 },
+    { food: "Paneer Curry", restaurant: "Delta Delights", rid: 2 },
+    { food: "Idli", restaurant: "Tirupati Tiffins", rid: 13 },
+    { food: "Fish Fry", restaurant: "Nellore Fish Fry", rid: 21 }
+  ];
+
+  const list = document.getElementById("restaurantList");
+  list.innerHTML = "";
+
+  defaultItems.forEach(item => {
+    const li = document.createElement("li");
+
+    const text = document.createElement("span");
+    text.textContent = `${item.food} | ${item.restaurant}`;
+
+    const btn = document.createElement("button");
+    btn.textContent = "View Menu";
+    btn.onclick = function () {
+      window.location.href = "menu.html?rid=" + item.rid;
+    };
+
+    li.appendChild(text);
+    li.appendChild(btn);
+    list.appendChild(li);
+  });
+</script>
+
+</body>
+</html>

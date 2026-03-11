@@ -1,0 +1,151 @@
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #f7f7f7;
+  color: #333;
+}
+
+/* Header */
+h1, h2 {
+  margin: 0;
+}
+
+header {
+  background: linear-gradient(135deg, #ff6a00, #ee0979);
+  color: white;
+  padding: 20px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Container */
+.container {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 10px;
+}
+
+/* Top bar */
+#topbar {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+#topbar input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  margin-right: 10px;
+  font-size: 16px;
+}
+
+#topbar button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  background: #ff6a00;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#topbar button:hover {
+  background: #e55a00;
+}
+
+/* Lists */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+/* Card style for items */
+li {
+  background: white;
+  margin-bottom: 12px;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Links */
+a {
+  text-decoration: none;
+  color: #ff6a00;
+  font-weight: bold;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Buttons */
+button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  background: #ee0979;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+button:hover {
+  background: #c90766;
+}
+
+/* Forms (login/register) */
+form, .form-box {
+  max-width: 400px;
+  margin: 50px auto;
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+}
+
+p {
+  text-align: center;
+}
+header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;   /* left side */
+  gap: 12px;
+  padding: 12px 20px;
+  background: linear-gradient(135deg, #ff6a00, #ee0979);
+  color: white;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo img {
+  height: 70px;   /* 🔥 BIG LOGO */
+  width: auto;
+}
+
+.logo span {
+  font-size: 26px;
+  font-weight: 700;
+}

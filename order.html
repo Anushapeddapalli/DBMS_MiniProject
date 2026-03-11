@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Checkout</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <img src="logo.png" alt="Logo">
+    <span>🍴 Tasty Bites</span>
+  </div>
+</header>
+
+<div class="container">
+  <h2>🧾 Order Summary</h2>
+
+  <div id="userInfo"></div>
+
+  <h3>🍽️ Items</h3>
+  <ul id="orderList"></ul>
+
+  <h3 id="orderTotal">Total: ₹0</h3>
+
+  <button id="payBtn" onclick="payNow()">Pay Now</button>
+
+  <div id="result" style="margin-top:20px;"></div>
+</div>
+
+<script>
+  const cart = JSON.parse(localStorage.getItem("cart") || "{}");
+  const rid = localStorage.getItem("currentRestaurant");
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  const orderList = document.getElementById("orderList");
+  const userInfo = document.getElementById("userInfo");
+  const resultDiv = document.getElementById("result");
+
+  let total = 0;
+
+  // Show user info
+  userInfo.innerHTML = `
+    <p><strong>Name:</strong> ${user.name}</p>
+    <p><strong>Email:</strong> ${user.email}</p>
+  `;
+
+  // Show items
+  Object.keys(cart).forEach(id => {
+    const item = cart[id];
+    const li = document.createElement("li");
+    li.textContent = `${item.name} - ₹${item.price} x ${item.qty}`;
+    orderList.appendChild(li);
+    total += item.price * item.qty;
+  });
+
+  document.getElementById("orderTotal").textContent = "Total: ₹" + total;
+
+  function payNow() {
+    // Call backend to save order
+    fetch("/place-order", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        user_id: user.user_id,
+        restaurant_id: rid,
+        total: total
+      })
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.error) {
+        alert(data.error);
+        return;
+      }
+
+      // Show success message with details
+      let itemsHtml = "";
+      Object.keys(cart).forEach(id => {
+        const item = cart[id];
+        itemsHtml += `<li>${item.name} x ${item.qty} = ₹${item.price * item.qty}</li>`;
+      });
+
+      resultDiv.innerHTML = `
+        <h2>✅ Order Successfully Placed</h2>
+        <p><strong>Name:</strong> ${user.name}</p>
+        <p><strong>Email:</strong> ${user.email}</p>
+        <p><strong>Amount Paid:</strong> ₹${total}</p>
+        <h3>Ordered Items:</h3>
+        <ul>${itemsHtml}</ul>
+        <p>🚚 Your order will be delivered soon!</p>
+      `;
+
+      // Clear cart
+      localStorage.removeItem("cart");
+
+      // Hide pay button
+      document.getElementById("payBtn").style.display = "none";
+    })
+    .catch(err => {
+      console.error("Payment error:", err);
+      alert("Something went wrong while placing order");
+    });
+  }
+</script>
+
+</body>
+</html>
